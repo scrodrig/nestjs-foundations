@@ -33,7 +33,7 @@ export class TodoService {
     return todo;
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
+  update(id: number, updateTodoDto: UpdateTodoDto): Todo {
     const { done, description } = updateTodoDto;
 
     const todo = this.findOne(id);
@@ -49,7 +49,9 @@ export class TodoService {
     return todo;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  remove(id: number): Todo {
+    const todo = this.findOne(id);
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+    return todo;
   }
 }
